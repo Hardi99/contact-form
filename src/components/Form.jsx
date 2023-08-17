@@ -1,55 +1,49 @@
 import "../App.css";
-import { useState } from "react";
-import StepTwo from "./StepTwo";
 
-const Form = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [checkPassword, setCheckPassword] = useState("");
+const Form = (props) => {
 
     const handleNameChange = event => {
         const value = event.target.value;
-        setName(value);
+        props.setName(value);
     };
 
     const handleEmailChange = event => {
         const value = event.target.value;
-        setEmail(value);
+        props.setEmail(value);
     };
 
     const handlePasswordChange = event => {
         const value = event.target.value;
-        setPassword(value);
+        props.setPassword(value);
     };
 
     const handleCheckPasswordChange = event => {
         const value = event.target.value;
-        setCheckPassword(value);
+        props.setCheckPassword(value);
     };
 
   const handleSubmit = event => {
      // Pour empêcher le navigateur de changer de page lors de la soumission du formulaire
     event.preventDefault();
     // Vérifier que les 2 password sont identiques
-    if (password === checkPassword) {
+    if (props.password === props.checkPassword) {
       // J'affiche une alerte
-      return (
-        <StepTwo name={name} mail={email} password={password} />
-      )
+      alert("Vous avez crée un compte !!!")
+      props.setRegister(!props.register);
+      console.log(!props.register)
     } else {
         alert("Vos 2 mots de passe ne sont pas identiques")
     }
-    console.log(name, email, password, checkPassword);
   };
 
   return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={props.register === true ? {display: 'none'} : {display: 'flex'}}>
+        <h1>Form</h1>
         <input
           placeholder="Name"
           type="text"
           name="email"
-          value={name}
+          value={props.name}
           onChange={handleNameChange}
         />
 
@@ -57,7 +51,7 @@ const Form = () => {
           placeholder="Email"
           type="text"
           name="email"
-          value={email}
+          value={props.email}
           onChange={handleEmailChange}
         />
 
@@ -65,7 +59,7 @@ const Form = () => {
           placeholder="Password"
           type="password"
           name="password"
-          value={password}
+          value={props.password}
           onChange={handlePasswordChange}
         />
         
@@ -73,7 +67,7 @@ const Form = () => {
           placeholder="Password"
           type="password"
           name="password"
-          value={checkPassword}
+          value={props.checkPassword}
           onChange={handleCheckPasswordChange}
         />
         <input type="submit" value="Register" className="confirm" />
