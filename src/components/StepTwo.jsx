@@ -1,16 +1,22 @@
 import "../App.css";
 
-const StepTwo = props => {
+const StepTwo = ({register, name, email, password, setRegister}) => {
+
+  const handleClick = () => {
+     setRegister(!register);
+     console.log(!register)
+   }
 
     return (
-        <div style={props.register === true ? {display: 'block'} : {display: 'none'}}>
+        <div style={register === true ? {display: 'block'} : {display: 'none'}}>
             <h1>Resultats</h1>
-                {console.log(props.name)}
+                {console.log(name)}
             <div>
-                <p>Name : {props.name}</p>
-                <p>Email : {props.email}</p>
-                <p>Password : {props.password}</p>
+                <p>Name : {name}</p>
+                <p>Email : {email}</p>
+                <p>Password : {password}</p>
             </div>
+            <button onClick={handleClick}>Edit informations</button>
         </div>
     )
 
