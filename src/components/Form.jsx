@@ -1,5 +1,6 @@
 import "../App.css";
 import { useState } from "react";
+import StepTwo from "./StepTwo";
 
 const Form = () => {
     const [name, setName] = useState("");
@@ -33,7 +34,9 @@ const Form = () => {
     // Vérifier que les 2 password sont identiques
     if (password === checkPassword) {
       // J'affiche une alerte
-      alert("Vous avez créé un compte !");
+      return (
+        <StepTwo name={name} mail={email} password={password} />
+      )
     } else {
         alert("Vos 2 mots de passe ne sont pas identiques")
     }
